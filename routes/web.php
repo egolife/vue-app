@@ -15,8 +15,15 @@ $router->get('/', function () {
     return view('welcome');
 });
 
+$router->get('/test', function(){
+   return view('test');
+});
 $router->get('skills', function(){
 	return ['Laravel', 'Vue', 'PHP', 'Javascript', 'Tooling'];
 });
 
 $router->resource('projects', 'ProjectsController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
