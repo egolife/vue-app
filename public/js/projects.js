@@ -13,38 +13,109 @@ class Errors {
         this.errors = errors;
     }
 
-    clear(field){
-        delete this.errors[field];
+    clear(field) {
+        if (field) {
+            delete this.errors[field];
+
+            return;
+        }
+
+        this.errors = {};
     }
 
-    has(field){
+    has(field) {
         return this.errors.hasOwnProperty(field);
     }
 
-    any(){
+    any() {
         return Object.keys(this.errors).length > 0;
+    }
+}
+
+class Form {
+    constructor(data) {
+        this.originalData = data;
+
+        for (let field in data) {
+            this[field] = data[field];
+        }
+
+        this.errors = new Errors();
+    }
+
+    reset() {
+        for (let field in this.originalData) {
+            this[field] = '';
+        }
+    }
+
+    data() {
+        let data = Object.assign({}, this);
+        delete data.originalData;
+        delete data.errors;
+
+        return data;
+    }
+
+    submit(requestType, url) {
+        return new Promise((resolve, reject) => {
+            axios[requestType](url, this.data())
+                .then(response => {
+                    this.onSuccess(response.data);
+
+                    resolve(response.data);
+                })
+                .catch(error => {
+                    this.onFail(error.response.data);
+
+                    reject(error.response.data);
+                });
+        });
+
+    }
+
+    onSuccess(data) {
+        console.log(data.message);
+        this.errors.clear();
+        this.reset();
+    }
+
+    onFail(data) {
+        this.errors.record(data);
     }
 }
 
 new Vue({
     el: '#app',
     data: {
-        name: '',
-        description: '',
-        errors: new Errors()
+        form: new Form({
+            name: '',
+            description: ''
+        }),
+        projects: [],
+        isLoading: false
     },
     methods: {
         onSubmit(){
-            axios.post('/projects', this.$data)
-                .then(this.onSuccess)
-                .catch(error => this.errors.record(error.response.data))
-            ;
+            this.isLoading = true;
+            this.form.submit('post', '/projects')
+                .then(this.handleResponse)
+                .catch(errorData => {
+                    console.log(errorData);
+                    this.isLoading = false;
+                });
         },
-        onSuccess(response){
-            alert(response);
-            this.name = '';
-            this.description = '';
-            //form reset
+        handleResponse(data){
+            this.getProjects();
+            console.log(data.message + ' ' + 'handler');
+            this.isLoading = false;
+        },
+        getProjects(){
+            axios.get('/projects')
+                .then(response => this.projects = response.data);
         }
+    },
+    mounted(){
+        this.getProjects();
     }
 });
