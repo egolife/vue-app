@@ -28,4 +28,5 @@ $router->get('shared-state', function(){
    return view('shared_state');
 });
 
+$router->resource('news', 'NewsController');
 \App\Services\VueLessons::routes();

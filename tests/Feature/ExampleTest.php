@@ -16,8 +16,9 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
+        $res = $this->get('/news')->assertSee('test')->assertViewHas('dummy', 'me');
+//        $response = $this->get('/');
+//
+//        $response->assertStatus(200);
     }
 }
