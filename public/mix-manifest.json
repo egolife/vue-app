@@ -1,5 +1,7 @@
 {
   "/js/projects.js": "/js/projects.js",
+  "/js/vendor.js": "/js/vendor.js",
   "/js/app.js": "/js/app.js",
-  "/css/app.css": "/css/app.css"
+  "/css/app.css": "/css/app.css",
+  "/js/shared_state.js": "/js/shared_state.js"
 }

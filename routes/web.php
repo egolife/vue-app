@@ -24,6 +24,8 @@ $router->get('skills', function(){
 
 $router->resource('projects', 'ProjectsController');
 
-Auth::routes();
+$router->get('shared-state', function(){
+   return view('shared_state');
+});
 
-Route::get('/home', 'HomeController@index');
+\App\Services\VueLessons::routes();
