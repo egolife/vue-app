@@ -160,3 +160,27 @@ let timer = new Promise((resolve, reject) => {
 });
 
 timer.then(() => console.log('after the timer'));
+
+let title = 'Red Rising';
+
+if (title.includes('Rising')) {
+    console.log('it includes');
+} else {
+    console.log('it doesn`t');
+}
+
+if (title.startsWith('Red')) {
+    console.log('it starts');
+} else {
+    console.log('it doesn`t');
+}
+
+if (title.endsWith('ing')) {
+    console.log('it ends');
+} else {
+    console.log('it doesn`t');
+}
+
+let str = 'sos';
+console.log(str.repeat(10));
+
