@@ -193,3 +193,14 @@ console.log(just_array.find((item) => item % 2));
 // [].keys();
 // [].values();
 // [].entries();
+
+let items = new Set(['one', 'two', 'three', 'four', 'one', 'two']);
+console.log(items);
+
+for(let item of items){
+    console.log(item);
+}
+
+items.add('new');
+items.forEach(item => console.log(item));
+console.log(...items);
