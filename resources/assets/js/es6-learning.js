@@ -146,3 +146,17 @@ new TaskCollection(['see', 'call', 'trust']).dump();
 console.log(foo);
 new Ttt(['see2', 'call2', 'trust2']).dump();
 new Www(['me2', 'get2', 'lust2']).dump();
+
+let timer = new Promise((resolve, reject) => {
+    console.log('Init promise');
+
+    setTimeout(function () {
+        console.log('Timeout done.');
+        resolve(3);
+    }, 3000);
+
+    // resolve();
+    // reject();
+});
+
+timer.then(() => console.log('after the timer'));
