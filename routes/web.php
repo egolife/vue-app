@@ -28,5 +28,9 @@ $router->get('shared-state', function(){
    return view('shared_state');
 });
 
+$router->get('es6-learning', function(){
+    return view('es6_learning');
+});
+
 $router->resource('news', 'NewsController');
 \App\Services\VueLessons::routes();
