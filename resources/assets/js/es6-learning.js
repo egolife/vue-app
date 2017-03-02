@@ -74,3 +74,77 @@ let template = `
 `.trim();
 
 console.log(template);
+
+function getPerson() {
+    let name = 'John';
+    let age = 25;
+
+    return {name, age};
+}
+
+console.log(getPerson());
+
+let person = {
+    name: 'Karen',
+    age: 32
+};
+
+let {name, age} = person;
+
+console.log(name, age);
+
+function getData({name, age}) {
+    console.log(name, age);
+}
+
+getData({
+    name: 'Tom',
+    surname: 'Soyer',
+    age: 18
+});
+
+class User{
+
+    constructor(username, email){
+        this.username = username;
+        this.email = email;
+    }
+    changeEmail(newEmail){
+        this.email = newEmail;
+    }
+
+    static register(...args){
+        return new User(...args);
+    }
+
+    get foo(){
+        return `${this.email} foo`;
+    }
+
+    set foo(arg){
+        this.email = arg.slice(1);
+        console.log(this.email);
+    }
+}
+
+let user = new User('Test User', 'egor@mal.cmo');
+user.changeEmail('newEmail@test.com');
+
+let user2 = User.register('Static call to class', 'email@mai.com');
+console.dir(user);
+console.dir(user2);
+console.log(user2.foo);
+user2.foo = 'newEmail@me.ru';
+
+
+
+
+
+
+
+
+
+
+
+
+
