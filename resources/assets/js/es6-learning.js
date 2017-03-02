@@ -184,3 +184,12 @@ if (title.endsWith('ing')) {
 let str = 'sos';
 console.log(str.repeat(10));
 
+
+let just_array = [2,4,6,8,9];
+console.log(just_array.includes(4));
+console.log(just_array.find((item) => item % 2));
+
+// [].fill();
+// [].keys();
+// [].values();
+// [].entries();
