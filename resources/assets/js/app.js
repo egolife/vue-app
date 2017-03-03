@@ -1,10 +1,16 @@
 import Vue from 'vue';
+import axios from 'axios';
 
-// Vue.component('notification', require('./components/Notification.vue'));
-import Notification from './components/Notification.vue';
+window.axios = axios;
+window.axios.defaults.headers.common = {
+    'X-CSRF-TOKEN': window.Laravel.csrfToken,
+    'X-Requested-With': 'XMLHttpRequest'
+};
+
+import Users from './components/Users.vue';
 
 new Vue({
     el: '#app',
 
-    components: { Notification }
+    components: { Users }
 });

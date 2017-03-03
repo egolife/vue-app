@@ -12,8 +12,8 @@ const {mix} = require('laravel-mix');
  */
 
 mix
-    .js('resources/assets/js/es6-learning.js', 'public/js')
-    // .js('resources/assets/js/app.js', 'public/js')
+    // .js('resources/assets/js/es6-learning.js', 'public/js')
+    .js('resources/assets/js/app.js', 'public/js')
     // .js('resources/assets/js/projects.js', 'public/js')
     // .extract(['lodash', 'bootstrap-sass', 'vue', 'axios'])
     // .js('resources/assets/js/vendor.js', 'public/js')
