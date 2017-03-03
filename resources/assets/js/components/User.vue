@@ -44,9 +44,8 @@
             updateUser(){
                 axios.patch(`/users/${this.user.id}`, this.editForm)
                     .then(response => {
-                        this.$emit('update-user');
+                        this.$emit('update-user', response.data.user);
                         this.cancelEdit();
-                        console.log(response.data);
                     });
             }
         }

@@ -31,7 +31,7 @@ class UsersController extends Controller
     public function update(User $user)
     {
         $user->update(request()->all());
-        return response()->json(['mesasge' => 'User updated']);
+        return response()->json(['mesasge' => 'User updated', 'user' => $user]);
     }
 
     public function destroy(User $user)

@@ -22,7 +22,7 @@
             </tr>
             </thead>
             <tbody>
-            <user v-for="user in users" :user="user" @delete-user="deleteUser" @update-user="fetchUsers"></user>
+            <user v-for="user in users" :user="user" @delete-user="deleteUser" @update-user="updateUser"></user>
             </tbody>
         </table>
     </div>
@@ -67,6 +67,12 @@
                     this.users.splice(index, 1);
                 });
             },
+            updateUser(user){
+                let old_user = this.users.find((oldUser) => oldUser.id === user.id);
+                for (let field in user) {
+                    old_user[field] = user[field];
+                }
+            }
         },
         created(){
             this.fetchUsers();
