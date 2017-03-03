@@ -13,7 +13,9 @@ class DatabaseSeeder extends Seeder
     {
         \App\User::truncate();
         \App\News::truncate();
+        \App\Customer::truncate();
         $this->call(UsersTableSeeder::class);
+        $this->call(CustomersTableSeeder::class);
 //        $this->call(NewsTableSeeder::class);
     }
 }

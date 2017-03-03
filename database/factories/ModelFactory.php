@@ -16,7 +16,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
-        'username'           => $faker->name,
+        'username'       => $faker->name,
         'email'          => $faker->unique()->safeEmail,
         'password'       => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
@@ -31,3 +31,12 @@ $factory->define(\App\News::class, function (Faker\Generator $faker) {
         'body'  => $faker->paragraph
     ];
 });
+
+$factory->define(\App\Customer::class, function (Faker\Generator $faker) {
+    return [
+        'name'  => $faker->name,
+        'email' => $faker->email,
+        'phone' => $faker->phoneNumber
+    ];
+});
+

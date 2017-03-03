@@ -1,5 +1,6 @@
 <?php
 
+use App\Customer;
 use Illuminate\Http\Request;
 
 /*
@@ -15,4 +16,14 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+$router->get('customers', function () {
+    $model = Customer::searchPaginateOrder();
+    $columns = Customer::$columns;
+
+    return response()->json([
+        'model' => $model,
+        'columns' => $columns
+    ]);
 });
